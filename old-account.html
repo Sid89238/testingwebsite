@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Account 
+{% endblock %}
+
+{% block main %}
+    <p>Account Information</p>
+    <hr>
+    {% for user in info %}
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Phone: {{ user.phone }}</p>
+        <p>Social Media: {{ user.socials }}</p>
+        <p>Items Uploaded: {{ user.uploads }}</p>
+    {% endfor %}
+    <a href='/changepassword'><p>Change Password?</p></a>
+    <a href='/changeinformation'><p>Change Information?</p></a>
+
+
+{% endblock %}

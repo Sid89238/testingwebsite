@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+    <form action="/register" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" autocapitalize="none" autocorrect="off" placeholder="Username" type="text" required>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" id="password" autocapitalize="none" autocorrect="off" name="password" placeholder="Password" type="password" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="password" autocapitalize="none" autocorrect="off" name="confirmation" placeholder="Confirm Password" type="password" required>
+        </div>
+        <hr>
+        <div class="mb-3">
+            <input type="email" autocomplete="off" autocapitalize="none" autocorrect="off" autofocus class="form-control mx-auto w-auto" id="email" name="email" placeholder="Your Email" required>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autocapitalize="none" autocorrect="off" autofocus class="form-control mx-auto w-auto" id="phone" name="phone" placeholder="Your Phone Number" type="number" required min="0">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autocapitalize="none" autocorrect="off" autofocus class="form-control mx-auto w-auto" id="socials" name="socials" placeholder="Your Social Media Tag (type none if you don't have any)" type="text" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+
+{% endblock %}
