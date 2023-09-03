@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+	<h3 class="title"> All Items </h3>
+	<div class="search-final">
+		<div class="search-box">
+			<form action="/search" method="post">
+				<input type="text" autocomplete="off" autofocus class="search-input" id="search" name="search" placeholder="Search...">
+			</form>
+		  <span class="search-icon">&#128269;</span>
+		</div>
+	</div>
+	<hr>
+	{% if db|length == 0 %}
+	<h2>No results found</h2>
+	{% endif %}
+	<body class = "items-body">
+		<div class="items-container">
+			<div class="products-container">
+				{% for img in db %}
+					<div class="items-product" data-name="p-1">
+						<a href="{{ url_for('info', id=img.id) }}"> 
+							<img src="data:;base64,{{ img.image }}" >
+							<p><b>Book Title:</b> {{ img.book_title }}</p>
+							<!--<b>Book Subject:</b> {{ img.book_subject }}</p>-->
+						</a>
+						<!--<form action="/" method="post">
+							<input name="id" type="hidden" value="{{ img.id }}">
+							<button class="btn btn-primary" id="{{ img.id }}" type="submit">More Information</button>  
+						</form>-->
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</body>
+{% endblock %}

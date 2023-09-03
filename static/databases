@@ -1,0 +1,36 @@
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    username TEXT NOT NULL,
+    hash_password TEXT NOT NULL,
+    email TEXT NOT NULL,
+    phone NOT NULL,
+    socials TEXT NOT NULL
+);
+
+CREATE TABLE database4 ( 
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    user_id INTEGER NOT NULL,
+    price INTEGER NOT NULL,
+    book_title TEXT NOT NULL,
+    book_subject TEXT NOT NULL,
+    book_description TEXT NOT NULL,
+    book_syllabus TEXT NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES users(id)
+);
+
+
+CREATE TABLE database3 ( 
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    user_id INTEGER NOT NULL,
+    price INTEGER NOT NULL,
+    book_title TEXT NOT NULL,
+    book_subject TEXT NOT NULL,
+    book_description TEXT NOT NULL,
+    book_syllabus TEXT NOT NULL,
+    email TEXT NOT NULL,
+    phone varchar(50) NOT NULL,
+    socials TEXT NOT NULL,
+    load_type TEXT NOT NULL,
+    load_timestamp TIMESTAMP, 
+    FOREIGN KEY(user_id) REFERENCES users(id)
+);

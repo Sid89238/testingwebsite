@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<div class="signup">
+  <div class="signup-container">
+    <h1>Create an Account</h1>
+    <form action="/register" method="post">
+      <div class="input-group">
+        <label for="fullname">Name</label>
+        <input autocomplete="off" autofocus  id="username" name="username" autocapitalize="none" autocorrect="off" placeholder="Name" type="text" required>
+      </div>
+      <div class="input-group">
+        <label for="email">Password</label>
+        <input autocomplete="off"  id="password" autocapitalize="none" autocorrect="off" name="password" placeholder="Password" type="password" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Confirm Password</label>
+        <input id="password" autocapitalize="none" autocorrect="off" name="confirmation" placeholder="Confirm Password" type="password" required>
+      </div>
+      <div class="input-group">
+        <label for="question1">Email</label>
+        <input type="email" autocomplete="off" autocapitalize="none" autocorrect="off" autofocus id="email" name="email" placeholder="Your Email" required>
+      </div>
+      <div class="input-group">
+        <label for="question2">Social Media</label>
+        <input autocomplete="off" autocapitalize="none" autocorrect="off" autofocus id="socials" name="socials" placeholder="Type none if you don't have any" type="text" required>
+      </div>
+      <button class="btn" type="submit">Sign Up</button>
+      <p class="message">Already have an account? <a href="/login">Log In</a></p>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,93 @@
+app.config['SECRET_KEY'] = 'asdjhaskljdhkasjh'
+app.config['UPLOAD_PHOTOS_DEST'] = 'uploads'
+
+photos = UploadSet('photos', IMAGES)
+configure_uploads(app, photos)
+
+class UploadForm(FlaskForm):
+    photo = FileField(
+        validators=(
+            FileAllowed(photos, 'Only images are allowed'),
+            FileRequired('File field should not be empty')
+        )
+    )
+    submit = SubmitField('Uploads')
+
+@app.route('/uploads/<filename>')
+def get_file(filename):
+    return send_from_directory(app.config['UPLOAD_PHOTOS_DEST'], filename)
+
+@app.route("/", methods=['GET', 'POST'])
+def upload_image():
+    form = UploadForm()
+    if form.validate_on_submit():
+        filename = photos.save(form.photo.data)
+        file_url = url_for('get_file', filename=filename)
+    else:
+        file_url = None
+    return render_template("upload.html", form=form, file_url=file_url)
+
+
+
+@app.route("/", methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        file = request.files['img']
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD'], filename))
+        img = os.path.join(app.config['UPLOAD'], filename)
+        return render_template('image_render.html', img=img)
+    return render_template('image_render.html')
+
+
+
+
+
+########################################
+Removed from upload.html
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mx-auto mt-5 text-center">
+                <h1>Add photos</h1>
+                <form method="post" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+
+                    {% for error in form.photo.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                    {% endfor %}
+
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            {{ form.photo(class=form-control)  }}
+                        </div>
+                        <div class="col-auto">
+                            {{ form.submit(class="bth bth-success")  }}
+                        </div>
+                    </div>
+
+                </form>
+
+                {% if file_url %}
+                    <div class="mt-5">
+                        <img src="{{ file_url }}" style=" width: 400px;" alt="please work">
+                    </div>
+                {% endif $}
+            </div>
+        </div>
+    </div>
+
+
+####Variables to insert into database
+user_id = session["user_id"]
+price = request.form.get("price")
+book_title = request.form.get("book_title")
+book_subject = request.form.get("book_subject")
+book_description = request.form.get("book_description")
+book_syllabus = request.form.get("book_syllabus")
+email = request.form.get("email")
+phone = request.form.get("phone")
+socials = request.form.get("socials")
+load_timestamp = datetime.datetime.now() #format: year-month-day
+############
+

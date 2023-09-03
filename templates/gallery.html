@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Gallery
+{% endblock %}
+
+{% block main %}
+    <h2>Hey</h2>
+    <!-- <img src="data:;base64,{{ image_list[2] }}"/> -->
+    
+    <hr>
+    <ul>
+        {% if image_list|length == 0 %}
+            <p>Add some Images to the Gallery</p>
+        {% else %}
+            {% for image in image_list %}
+                <li>
+                    <img src="data:;base64,{{ image }}"/>
+                </li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+
+{% endblock %}
